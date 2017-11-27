@@ -32,6 +32,7 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$support_version"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation "com.android.support:design:$support_version"
+    implementation 'com.google.guava:guava:23.5-android'
 
     //Network
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
@@ -44,8 +45,37 @@ dependencies {
     compile "com.github.bumptech.glide:glide:$glide_version"
     annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
 
-    implementation 'com.android.support:support-v4:27.0.1'
+    //Test dependencies
     testImplementation "junit:junit:$junit_version"
+    testImplementation 'org.json:json:20140107'
+    androidTestImplementation "org.mockito:mockito-all:$mockito_version"
+    testCompile "org.powermock:powermock-module-junit4:$power_mockito"
+    testCompile "org.powermock:powermock-api-mockito:$power_mockito"
+    androidTestImplementation "org.hamcrest:hamcrest-all:$hamcrest_version"
     androidTestImplementation "com.android.support.test:runner:$runner_version"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_version"
+    androidTestImplementation ("com.android.support.test.espresso:espresso-core:$espresso_version", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.google.code.findbugs'
+    })
+
+/*
+Resolves dependency versions across test and production APKs, specifically, transitive
+dependencies. This is required since Espresso internally has a dependency on support-annotations.
+*/
+    configurations.all {
+        resolutionStrategy.force "com.android.support:support-annotations:$support_version"
+    }
+
+/*
+All direct/transitive dependencies shared between your test and production APKs need to be
+excluded from the test APK! This is necessary because both APKs will contain the same classes. Not
+excluding these dependencies from your test configuration will result in an dex pre-verifier error
+at runtime. More info in this tools bug: (https://code.google.com/p/android/issues/detail?id=192497)
+*/
+    configurations.compile.dependencies.each { compileDependency ->
+        println "Excluding compile dependency: ${compileDependency.getName()}"
+        configurations.androidTestCompile.dependencies.each { androidTestCompileDependency ->
+            configurations.androidTestCompile.exclude module: "${compileDependency.getName()}"
+        }
+    }
 }

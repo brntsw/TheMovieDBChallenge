@@ -28,6 +28,10 @@ public class Movie implements Parcelable {
 
     public Movie(){}
 
+    public Movie(String title){
+        this.title = title;
+    }
+
     protected Movie(Parcel in) {
         adult = in.readByte() != 0;
         backdropPath = in.readString();
