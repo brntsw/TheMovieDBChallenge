@@ -22,6 +22,7 @@ import com.bruno.fast.themoviedbchallenge.presentation.MoviesListPresenter;
 import com.bruno.fast.themoviedbchallenge.ui.activity.MainActivity;
 import com.bruno.fast.themoviedbchallenge.ui.adapter.MoviesAdapter;
 import com.bruno.fast.themoviedbchallenge.util.CommonUtil;
+import com.bruno.fast.themoviedbchallenge.util.FragmentUtil;
 
 import java.util.ArrayList;
 
@@ -61,6 +62,8 @@ public class MoviesListFragment extends BaseFragment implements MoviesListContra
 
         if(getActivity() != null && getActivity() instanceof MainActivity){
             ((MainActivity)getActivity()).showBackArrow();
+
+            ((MainActivity)getActivity()).hideToolbar();
         }
 
         if(args != null){
@@ -80,6 +83,9 @@ public class MoviesListFragment extends BaseFragment implements MoviesListContra
 
         if(getActivity() != null){
             coordinatorLayout = getActivity().findViewById(R.id.coordinator_main);
+            if(getActivity() instanceof MainActivity){
+                ((MainActivity)getActivity()).showToolbar();
+            }
         }
 
         tvNoMovies = rootView.findViewById(R.id.tv_no_movies);
@@ -110,7 +116,8 @@ public class MoviesListFragment extends BaseFragment implements MoviesListContra
             gridMovies.setOnItemClickListener((adapterView, view, position, l) -> {
                 Movie movie = (Movie) adapterView.getItemAtPosition(position);
 
-                Log.d(TAG, movie.getTitle());
+                MovieDetailsFragment fragment = MovieDetailsFragment.newInstance(null);
+                FragmentUtil.replaceFragment(getFragmentManager(), fragment, MovieDetailsFragment.TAG);
             });
         }
         else{

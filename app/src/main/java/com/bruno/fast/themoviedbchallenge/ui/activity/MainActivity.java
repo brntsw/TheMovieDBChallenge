@@ -40,6 +40,18 @@ public class MainActivity extends BaseActivity {
         buildGenresListFragment();
     }
 
+    public void showToolbar(){
+        if(getActionBar() != null){
+            getActionBar().show();
+        }
+    }
+
+    public void hideToolbar(){
+        if(getActionBar() != null){
+            getActionBar().hide();
+        }
+    }
+
     public void showBackArrow(){
         if(actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
