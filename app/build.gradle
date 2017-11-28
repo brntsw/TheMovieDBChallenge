@@ -42,6 +42,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-scalars:$scalars_version"
 
     //Glide
+    implementation 'com.android.support:support-v4:27.0.0'
     compile "com.github.bumptech.glide:glide:$glide_version"
     annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
 
@@ -53,7 +54,7 @@ dependencies {
     testCompile "org.powermock:powermock-api-mockito:$power_mockito"
     androidTestImplementation "org.hamcrest:hamcrest-all:$hamcrest_version"
     androidTestImplementation "com.android.support.test:runner:$runner_version"
-    androidTestImplementation ("com.android.support.test.espresso:espresso-core:$espresso_version", {
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:$espresso_version", {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.google.code.findbugs'
     })

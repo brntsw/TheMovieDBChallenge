@@ -1,0 +1,28 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bruno.fast.themoviedbchallenge.ui.fragment.MovieDetailsFragment">
+
+    <FrameLayout
+        android:id="@+id/frame_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/cover_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/backdrop_img"
+            android:layout_width="80dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp"/>
+
+    </FrameLayout>
+
+
+
+</RelativeLayout>

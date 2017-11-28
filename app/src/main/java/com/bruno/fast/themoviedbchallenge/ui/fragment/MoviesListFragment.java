@@ -19,6 +19,7 @@ import com.bruno.fast.themoviedbchallenge.data.model.Genre;
 import com.bruno.fast.themoviedbchallenge.data.model.Movie;
 import com.bruno.fast.themoviedbchallenge.presentation.MoviesListContract;
 import com.bruno.fast.themoviedbchallenge.presentation.MoviesListPresenter;
+import com.bruno.fast.themoviedbchallenge.ui.activity.MainActivity;
 import com.bruno.fast.themoviedbchallenge.ui.adapter.MoviesAdapter;
 import com.bruno.fast.themoviedbchallenge.util.CommonUtil;
 
@@ -57,6 +58,10 @@ public class MoviesListFragment extends BaseFragment implements MoviesListContra
         View rootView = inflater.inflate(R.layout.fragment_movies_list, container, false);
 
         setup(rootView);
+
+        if(getActivity() != null && getActivity() instanceof MainActivity){
+            ((MainActivity)getActivity()).showBackArrow();
+        }
 
         if(args != null){
             genreId = args.getInt(Genre.BUNDLE_ID);
