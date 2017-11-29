@@ -62,8 +62,6 @@ public class MoviesListFragment extends BaseFragment implements MoviesListContra
 
         if(getActivity() != null && getActivity() instanceof MainActivity){
             ((MainActivity)getActivity()).showBackArrow();
-
-            ((MainActivity)getActivity()).hideToolbar();
         }
 
         if(args != null){
@@ -116,7 +114,10 @@ public class MoviesListFragment extends BaseFragment implements MoviesListContra
             gridMovies.setOnItemClickListener((adapterView, view, position, l) -> {
                 Movie movie = (Movie) adapterView.getItemAtPosition(position);
 
-                MovieDetailsFragment fragment = MovieDetailsFragment.newInstance(null);
+                Bundle bundle = new Bundle();
+                bundle.putLong(Movie.BUNDLE_ID, movie.getId());
+
+                MovieDetailsFragment fragment = MovieDetailsFragment.newInstance(bundle);
                 FragmentUtil.replaceFragment(getFragmentManager(), fragment, MovieDetailsFragment.TAG);
             });
         }

@@ -6,10 +6,11 @@
     <string name="genre_name">%s\nmovies</string>
     <string name="no_movies">No movies</string>
 
+    <!-- Movie -->
+    <string name="homepage">Homepage ></string>
+
     <!-- Error messages -->
     <string name="generic_error">An error has occurred</string>
     <string name="error_load_genres">Error loading the genres</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error_load_movie">Error loading movie</string>
 </resources>

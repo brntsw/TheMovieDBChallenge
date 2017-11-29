@@ -61,12 +61,15 @@ public class MoviesListPresenter implements MoviesListContract.Presenter {
                 }
                 else{
                     Log.d(TAG, "Error: " + response.errorBody()+"");
+                    moviesListView.onError(context.getString(R.string.generic_error));
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
                 moviesListView.hideProgress();
+                Log.d(TAG, t.getMessage());
+                moviesListView.onError(context.getString(R.string.generic_error));
             }
         });
     }

@@ -32,7 +32,7 @@ public interface RestApi {
     Call<String> getMoviesByGenre(@Path("id") int genreId, @Query("api_key") String apiKey);
 
     @GET(AppConstants.URL_GET_MOVIE_BY_ID)
-    Call<String> getMovieById(@Path("id") int movieId, @Query("api_key") String apiKey);
+    Call<String> getMovieById(@Path("id") long movieId, @Query("api_key") String apiKey);
 
     class Builder {
         private static HttpLoggingInterceptor getLoggingInterceptor() {

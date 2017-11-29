@@ -1,5 +1,6 @@
 package com.bruno.fast.themoviedbchallenge.data.model;
 
+import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -12,10 +13,14 @@ import java.util.List;
 
 public class Movie implements Parcelable {
 
+    public static final String BUNDLE = "movie";
+    public static final String BUNDLE_ID = "movie_id";
+
     private boolean adult;
     private String backdropPath;
     private ArrayList<Genre> genres;
     private List<Integer> genreIds;
+    private String homepage;
     private long id;
     private String originalLanguage;
     private String originalTitle;
@@ -25,6 +30,9 @@ public class Movie implements Parcelable {
     private String releaseDate;
     private String title;
     private double voteAverage;
+    private int voteCount;
+
+    private Drawable backdropDrawable;
 
     public Movie(){}
 
@@ -37,6 +45,7 @@ public class Movie implements Parcelable {
         backdropPath = in.readString();
         genres = in.createTypedArrayList(Genre.CREATOR);
         genreIds = new ArrayList<>();
+        homepage = in.readString();
         id = in.readLong();
         originalLanguage = in.readString();
         originalTitle = in.readString();
@@ -46,6 +55,7 @@ public class Movie implements Parcelable {
         releaseDate = in.readString();
         title = in.readString();
         voteAverage = in.readDouble();
+        voteCount = in.readInt();
     }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
@@ -90,6 +100,14 @@ public class Movie implements Parcelable {
 
     public void setGenreIds(List<Integer> genreIds) {
         this.genreIds = genreIds;
+    }
+
+    public String getHomepage() {
+        return homepage;
+    }
+
+    public void setHomepage(String homepage) {
+        this.homepage = homepage;
     }
 
     public long getId() {
@@ -164,6 +182,22 @@ public class Movie implements Parcelable {
         this.voteAverage = voteAverage;
     }
 
+    public int getVoteCount() {
+        return voteCount;
+    }
+
+    public void setVoteCount(int voteCount) {
+        this.voteCount = voteCount;
+    }
+
+    public Drawable getBackdropDrawable() {
+        return backdropDrawable;
+    }
+
+    public void setBackdropDrawable(Drawable backdropDrawable) {
+        this.backdropDrawable = backdropDrawable;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -175,6 +209,7 @@ public class Movie implements Parcelable {
         parcel.writeString(backdropPath);
         parcel.writeTypedList(genres);
         parcel.writeList(genreIds);
+        parcel.writeString(homepage);
         parcel.writeLong(id);
         parcel.writeString(originalLanguage);
         parcel.writeString(originalTitle);
@@ -184,5 +219,6 @@ public class Movie implements Parcelable {
         parcel.writeString(releaseDate);
         parcel.writeString(title);
         parcel.writeDouble(voteAverage);
+        parcel.writeInt(voteCount);
     }
 }

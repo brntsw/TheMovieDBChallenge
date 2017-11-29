@@ -41,14 +41,14 @@ public class MainActivity extends BaseActivity {
     }
 
     public void showToolbar(){
-        if(getActionBar() != null){
-            getActionBar().show();
+        if(getSupportActionBar() != null){
+            getSupportActionBar().show();
         }
     }
 
     public void hideToolbar(){
-        if(getActionBar() != null){
-            getActionBar().hide();
+        if(getSupportActionBar() != null){
+            getSupportActionBar().hide();
         }
     }
 
