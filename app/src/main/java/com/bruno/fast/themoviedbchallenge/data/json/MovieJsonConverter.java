@@ -16,14 +16,27 @@ import java.util.List;
 
 public class MovieJsonConverter {
 
+    public static final String INDEX_ADULT = "adult";
+    public static final String INDEX_BACKDROP_PATH = "backdrop_path";
+    public static final String INDEX_GENRES = "genres";
+    public static final String INDEX_ID = "id";
+    public static final String INDEX_ORIGINAL_LANGUAGE = "original_language";
+    public static final String INDEX_ORIGINAL_TITLE = "original_title";
+    public static final String INDEX_OVERVIEW = "overview";
+    public static final String INDEX_RELEASE_DATE = "release_date";
+    public static final String INDEX_POSTER_PATH = "poster_path";
+    public static final String INDEX_TITLE = "title";
+    public static final String INDEX_VOTE_COUNT = "vote_count";
+    public static final String INDEX_VOTE_AVERATE = "vote_average";
+
     public Movie getMovie(String json) throws JSONException {
         JSONObject jsonObjectMovie = new JSONObject(json);
 
         Movie movie = new Movie();
 
-        boolean isAdult = jsonObjectMovie.getBoolean("adult");
-        String backdropPath = jsonObjectMovie.getString("backdrop_path");
-        JSONArray jsonGenres = jsonObjectMovie.getJSONArray("genres");
+        boolean isAdult = jsonObjectMovie.getBoolean(INDEX_ADULT);
+        String backdropPath = jsonObjectMovie.getString(INDEX_BACKDROP_PATH);
+        JSONArray jsonGenres = jsonObjectMovie.getJSONArray(INDEX_GENRES);
 
         ArrayList<Genre> genres = new ArrayList<>();
 
@@ -32,8 +45,8 @@ public class MovieJsonConverter {
                 Genre genre = new Genre();
 
                 JSONObject jsonGenre = jsonGenres.getJSONObject(j);
-                int id = jsonGenre.getInt("id");
-                String name = jsonGenre.getString("name");
+                int id = jsonGenre.getInt(GenreListJsonConverter.INDEX_ID);
+                String name = jsonGenre.getString(GenreListJsonConverter.INDEX_NAME);
 
                 genre.setId(id);
                 genre.setName(name);
@@ -42,15 +55,15 @@ public class MovieJsonConverter {
             }
         }
 
-        long id = jsonObjectMovie.getLong("id");
-        String originalLanguage = jsonObjectMovie.getString("original_language");
-        String originalTitle = jsonObjectMovie.getString("original_title");
-        String overview = jsonObjectMovie.getString("overview");
-        String releaseDate = jsonObjectMovie.getString("release_date");
-        String posterPath = jsonObjectMovie.getString("poster_path");
-        String title = jsonObjectMovie.getString("title");
-        int voteCount = jsonObjectMovie.getInt("vote_count");
-        double voteAverage = jsonObjectMovie.getDouble("vote_average");
+        long id = jsonObjectMovie.getLong(INDEX_ID);
+        String originalLanguage = jsonObjectMovie.getString(INDEX_ORIGINAL_LANGUAGE);
+        String originalTitle = jsonObjectMovie.getString(INDEX_ORIGINAL_TITLE);
+        String overview = jsonObjectMovie.getString(INDEX_OVERVIEW);
+        String releaseDate = jsonObjectMovie.getString(INDEX_RELEASE_DATE);
+        String posterPath = jsonObjectMovie.getString(INDEX_POSTER_PATH);
+        String title = jsonObjectMovie.getString(INDEX_TITLE);
+        int voteCount = jsonObjectMovie.getInt(INDEX_VOTE_COUNT);
+        double voteAverage = jsonObjectMovie.getDouble(INDEX_VOTE_AVERATE);
 
         movie.setAdult(isAdult);
         movie.setBackdropPath(backdropPath);

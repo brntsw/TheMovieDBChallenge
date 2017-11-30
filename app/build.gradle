@@ -51,8 +51,8 @@ dependencies {
     testImplementation "junit:junit:$junit_version"
     testImplementation 'org.json:json:20140107'
     androidTestImplementation "org.mockito:mockito-all:$mockito_version"
-    testCompile "org.powermock:powermock-module-junit4:$power_mockito"
-    testCompile "org.powermock:powermock-api-mockito:$power_mockito"
+    testImplementation "org.powermock:powermock-module-junit4:$power_mockito"
+    testImplementation "org.powermock:powermock-api-mockito:$power_mockito"
     androidTestImplementation "org.hamcrest:hamcrest-all:$hamcrest_version"
     androidTestImplementation "com.android.support.test:runner:$runner_version"
     androidTestImplementation("com.android.support.test.espresso:espresso-core:$espresso_version", {
