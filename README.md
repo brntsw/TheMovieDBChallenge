@@ -5,14 +5,14 @@ This is a repository that contains an Android project related to a Challenge tes
 
 Para o desenvolvimento do projeto do catálogo de filmes, primeiro foi verificado qual seria a arquitetura mais adequada para tal. Dentre as várias disponíveis, foi escolhido o MVP (Model View Presenter). Mais detalhes sobre tal arquitetura podem ser vistos abaixo.
 
-![MVP](https://ibb.co/jG8iCw)
+![MVP](http://i68.tinypic.com/1zxb3u1.png)
 
 Como pode ser visto, o MVP separa as camadas de visualização (View) da de negócio e dados (Model), onde há a evocação de eventos através da chamada de uma camada de apresentação (Presenter), onde é organizado como será implementado tudo e realizando a intermediação entre a View e a Model (podendo ser dados locais ou remotos). No caso do aplicativo desenvolvido aqui, o Presenter tem como função implementar métodos de chamadas para APIs.
 Consequentemente, a estrutura fica mais organizada e o código mais limpo e com uma maior manutenibilidade e testabilidade.
 
 Um exemplo de como foi implementado tal arquitetura no projeto é a de listagem de gêneros, o qual possui menos dados e fica melhor para expor neste documento. A imagem abaixo mostra como tal implementação foi realizada:
 
-![Class diagram](https://ibb.co/huO5QG)
+![Class diagram](http://i64.tinypic.com/v5lm6f.png)
 
 Há uma interface geral chamada GeneralContract<T> que possui um tipo genérico (Generics) para seu método onSuccess(T t). Então, com tal interface criada, foi criada a interface GenresListContract que herda da GeneralContract<ArrayList<Genre>>, ou seja, o tipo que é enviado para o onSuccess da interface mãe é um ArrayList<Genre>. Então, há uma outra interface interna nessa chamada de Presenter, o qual tem como função ser implementada na classe GenresListPresenter, a qual possui a implementação de fato do método getGenresList(). A interface é basicamente utilizada para diminuir o acoplamento entre as classes e para servir realmente como um contrato entre elas. A classe GenresListPresenter possui uma dependência com a interface RestApi, que basicamente possui os métodos para a API através da utilização do Retrofit.
 
