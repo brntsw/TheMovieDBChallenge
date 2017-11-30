@@ -27,10 +27,10 @@ Com a implementação de testes antes do desenvolvimento do aplicativo em si, ch
 
 As tecnologias utilizadas foram as seguintes:
 
-Android Studio
-Retrofit
-Glide
-PowerMockito
+- Android Studio
+- Retrofit
+- Glide
+- PowerMockito
 
 
 **Android Studio**
